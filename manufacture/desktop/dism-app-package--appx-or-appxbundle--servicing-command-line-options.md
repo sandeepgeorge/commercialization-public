@@ -97,6 +97,8 @@ Use **/LicensePath** with the **/PackagePath** option to specify the location of
 
 Only use **/SkipLicense** with apps that do not require a license on a sideloading-enabled computer. Using **/SkipLicense** in other scenarios can compromise an image.
 
+Use **/Region** to specify what regions an app package (.appx or .appxbundle) must be provisioned in. The region argument can either be “all”, indicating that the app should be provisioned for all regions, or it can be a semi-colon delimited list of regions. The regions will be in the form of ISO 3166-1 Alpha-2 or ISO 3166-1 Alpha-3 codes. (https://en.wikipedia.org/wiki/ISO_3166-1). For example, the United States can be specified as either “US” or “USA” (case-insensitive). When a list of regions is NOT specified package will be provisioned only if it is pinned to start layout.
+
 **Examples:**
 
 ```
@@ -104,6 +106,9 @@ Dism /Image:C:\test\offline /Add-ProvisionedAppxPackage /FolderPath:c:\Test\Apps
 Dism /Online /Add-ProvisionedAppxPackage /PackagePath:C:\Test\Apps\MyPackedApp\MainPackage.appx /DependencyPackagePath:C:\Test\Apps\MyPackedApp\Framework-x86.appx /DependencyPackagePath:C:\Test\Apps\MyPackedApp\Framework-x64.appx /LicensePath:C:\Test\Apps\MyLicense.xml
 Dism /Online /Add-ProvisionedAppxPackage /FolderPath:C:\Test\Apps\MyUnpackedApp /SkipLicense
 Dism /Image:C:\test\offline /Add-ProvisionedAppxPackage /PackagePath:C:\Test\Apps\MyPackedApp\MainPackage.appxbundle /SkipLicense
+Dism /Online /Add-ProvisionedAppxPackage /PackagePath:C:\Test\Apps\MyPackedApp\MainPackage.appxbundle /Region="all"
+Dism /Online /Add-ProvisionedAppxPackage /PackagePath:C:\Test\Apps\MyPackedApp\MainPackage.appxbundle /Region="US;GB" 
+
 ```
 
 ### /Remove-ProvisionedAppxPackage
